@@ -8,7 +8,7 @@ angular.module('categories.bookmarks.create', [
         views: {
           '@eggly.categories.bookmarks': {
             templateUrl: 'app/categories/bookmarks/create/create.bookmark.tmpl.html',
-            controller: 'CreateBookMarkCtrl',
+            controller: 'CreateBookMarkCtrl'
           }
         }
       })

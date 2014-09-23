@@ -31,13 +31,14 @@ angular.module('bookmarks', [
         $scope.bookmarks = result;
       });
 
-    $scope.getCurrentCategory = categories.getCurrentCategory;
-    $scope.getCurrentCategoryName = categories.getCurrentCategoryName;
     $scope.isSelectedBookmark = function (bookmarkId) {
       return $stateParams.bookmarkId == bookmarkId;
     };
 
+    $scope.getCurrentCategory = categories.getCurrentCategory;
+    $scope.getCurrentCategoryName = categories.getCurrentCategoryName;
     $scope.deleteBookmark = bookmarks.deleteBookmark;
+
   })
 ;
 
