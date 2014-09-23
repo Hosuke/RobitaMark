@@ -1,5 +1,6 @@
 angular.module('categories.bookmarks.edit', [
-  'eggly.models.bookmarks'
+  'eggly.models.bookmarks',
+    "firebase"
 ])
   .config(function ($stateProvider) {
     $stateProvider

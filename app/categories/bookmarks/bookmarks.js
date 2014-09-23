@@ -2,7 +2,8 @@ angular.module('bookmarks', [
   'categories.bookmarks.edit',
   'categories.bookmarks.create',
   'eggly.models.categories',
-  'eggly.models.bookmarks'
+  'eggly.models.bookmarks',
+    "firebase"
 ])
   .config(function ($stateProvider) {
     $stateProvider
@@ -17,7 +18,7 @@ angular.module('bookmarks', [
       })
     ;
   })
-  .controller('BookmarksCtrl', function BookmarksCtrl($scope, $stateParams, bookmarks, categories) {
+  .controller('BookmarksCtrl', function BookmarksCtrl($scope, $stateParams, $firebase, bookmarks, categories) {
     categories.setCurrentCategory();
 
     if ($stateParams.category) {
@@ -28,7 +29,9 @@ angular.module('bookmarks', [
 
     bookmarks.getBookmarks()
       .then(function (result) {
-        $scope.bookmarks = result;
+            // ignore the result
+            var ref = new Firebase("https://amber-torch-1305.firebaseio.com/mark/Bookmark");
+            $scope.bookmarks = $firebase(ref).$asArray();
       });
 
     $scope.isSelectedBookmark = function (bookmarkId) {

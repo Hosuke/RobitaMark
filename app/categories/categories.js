@@ -1,5 +1,6 @@
 angular.module('categories', [
-  'eggly.models.categories'
+  'eggly.models.categories',
+    "firebase"
 ])
   .config(function ($stateProvider) {
     $stateProvider
@@ -18,12 +19,14 @@ angular.module('categories', [
       });
   })
 
-  .controller('CategoriesCtrl', function CategoriesCtrl($scope, categories) {
+  .controller('CategoriesCtrl', function CategoriesCtrl($scope, $firebase, categories) {
     $scope.getCurrentCategoryName = categories.getCurrentCategoryName;
 
     categories.getCategories()
       .then(function (result) {
-        $scope.categories = result;
+            // ignore the result
+            var ref = new Firebase("https://amber-torch-1305.firebaseio.com/mark/Category");
+            $scope.categories = $firebase(ref).$asArray();
       });
 
     $scope.isCurrentCategory = function (category) {
